@@ -10,6 +10,9 @@ import { BsSunriseFill, BsSunsetFill } from "react-icons/bs";
 import { WiSunrise, WiSunset } from "react-icons/wi";
 import { TbExchangeOff, TbPercentage } from "react-icons/tb";
 import { AiOutlineFall, AiOutlineRise } from "react-icons/ai";
+import "./style.css"
+
+
 export const Coins = ({ data, loading }) => {
   if (loading) {
     return <h2>loading</h2>;
@@ -42,10 +45,10 @@ export const Coins = ({ data, loading }) => {
         return "$" + price;
       }
     }
+   
 
     return (
       <tr>
-        <td key={idx}>{idx + 1}</td>
         <td key={idx}>{eachObj.symbol}</td>
         <td key={idx}>{formatTwoDecimal(eachObj.askPrice)}</td>
         <td key={idx}>{eachObj.askQty}</td>
@@ -54,21 +57,24 @@ export const Coins = ({ data, loading }) => {
         {/* <td key={idx} >{eachObj.count}</td> */}
         {/* <td key={idx} >{eachObj.firstId}</td> */}
         <td key={idx}>
-          {formatTwoDecimal(eachObj.highPrice)} /{" "}
+          {formatTwoDecimal(eachObj.highPrice)} </td>
+        <td>
           {formatTwoDecimal(eachObj.lowPrice)}
         </td>
         <td key={idx}>{priceStatusValueFunction(priceStatusValue)}</td>
         <td key={idx}>{eachObj.lastId}</td>
         <td key={idx}>{Moment(eachObj.openTime).format("LTS")}</td>
         <td key={idx}>
-          <BsSunriseFill /> {formatTwoDecimal(eachObj.openPrice)} /{" "}
+          <BsSunriseFill /> {formatTwoDecimal(eachObj.openPrice)} 
+        </td>
+        <td>
           <BsSunsetFill /> {formatTwoDecimal(eachObj.lastPrice)}
         </td>
         <td key={idx}>{Moment(eachObj.closeTime).format("LTS")}</td>
         <td key={idx}>{eachObj.lastQty}</td>
         <td key={idx}>{formatTwoDecimal(eachObj.prevClosePrice)}</td>
         <td key={idx}>{formatTwoDecimal(eachObj.priceChange)}</td>
-        <td key={idx}>{eachObj.priceChangePercent}</td>
+        <td key={idx}>{Number(eachObj.priceChangePercent).toFixed(3)+"%"}</td>
         {/* <td key={idx} >{eachObj.quoteVolume}</td> 
         {/* <td key={idx} >{eachObj.volume}</td> */}
         {/* <td key={idx} >{eachObj.weightedAvgPrice}</td>  */}
@@ -80,7 +86,6 @@ export const Coins = ({ data, loading }) => {
     <table className="table table-striped table-dark">
       <thead>
         <tr>
-          <th>sno</th>
           <th>
             {" "}
             <GiCoins /> Crypto Coins
@@ -97,20 +102,16 @@ export const Coins = ({ data, loading }) => {
           <th>bidQty</th> */}
           {/* <th>count</th>
           <th>firstId</th> */}
-          <th>
-            {" "}
-            <AiOutlineRise /> 24h High Price / <AiOutlineFall /> 24h Low Price
-          </th>
+          <th><AiOutlineRise /> 24h High Price</th>
+          <th><AiOutlineFall /> 24h Low Price</th>
           <th>Price Status</th>
           <th>Last Id</th>
           <th>
             {" "}
             <WiSunrise /> Open Time
           </th>
-          <th>
-            {" "}
-            <BsSunriseFill /> Open Price / <BsSunsetFill /> Last Price
-          </th>
+          <th><BsSunriseFill /> Open Price</th>
+          <th><BsSunsetFill /> Last Price</th>
           <th>
             {" "}
             <WiSunset /> Close Time
