@@ -36,9 +36,6 @@ function BinanceApi() {
   console.log("currentPageCoins " + currentPageCoins);
 
 
-  
-
-
   //change page 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
