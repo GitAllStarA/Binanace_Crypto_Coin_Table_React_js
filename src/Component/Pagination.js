@@ -13,7 +13,7 @@ export const Pagination = ({ coinsPerPage, totalCoins, paginate }) => {
 
   const loopnumbers = () => {
     return (
-      <ul className="pagination">
+      <ul className="pagination" id="pageNumberSizeFix">
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
             <a onClick={() => paginate(number)} href="!#" className="page-link">

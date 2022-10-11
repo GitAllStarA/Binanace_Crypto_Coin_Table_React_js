@@ -4,12 +4,13 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Coins } from "./Coins";
 import { Pagination } from "./Pagination";
+import {SiBinance} from "react-icons/si";
 
 function BinanceApi() {
   const [data, setData] = useState([]);
   const [loading, setLodaing] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [coinsPerPage] = useState(100);
+  const [coinsPerPage] = useState(30);
 
   const API = "https://api2.binance.com/api/v3/ticker/24hr";
 
@@ -17,7 +18,7 @@ function BinanceApi() {
     setLodaing(true);
     await axios.get(API).then((promData) => {
       setData(promData.data);
-      //console.log(promData.data);
+      console.log(promData.data);
       setLodaing(false);
     });
   };
@@ -35,13 +36,17 @@ function BinanceApi() {
   console.log("currentPageCoins " + currentPageCoins);
 
 
+  
+
+
   //change page 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="container">
-      <h2 className="text-center">Crypto Coins</h2>
-      <div className="row">
+    <div>
+      
+      <h2 className="text-center">Crypto Coins <SiBinance/></h2>
+      <div>
         <Coins data={currentPageCoins} loading={loading} />
         <Pagination coinsPerPage={coinsPerPage} totalCoins={data.length} paginate={paginate} />
       </div>
